@@ -1,4 +1,4 @@
-pipeline {
+pipeline {https://github.com/mrushdan/cicd-pipeline-train-schedule-dockerdeploy
     agent any
     stages {
         stage('Build') {
@@ -9,4 +9,18 @@ pipeline {
             }
         }
     }
+    
+    stage('Build Docker Image') {
+            when {
+                branch 'master'
+            }
+            steps {
+                script {
+                    app = docker.build("mrushdan/train-schedule")
+                    app.inside {
+                        sh 'echo $(curl localhost:8080)'
+                    }
+                }
+            }
+        }
 }
