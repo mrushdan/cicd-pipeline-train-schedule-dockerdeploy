@@ -8,8 +8,6 @@ pipeline {https://github.com/mrushdan/cicd-pipeline-train-schedule-dockerdeploy
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
-    }
-    
         stage('Build Docker Image') {
             when {
                 branch 'master'
@@ -36,4 +34,6 @@ pipeline {https://github.com/mrushdan/cicd-pipeline-train-schedule-dockerdeploy
                 }
             }
         }
+    }
+            
 }
